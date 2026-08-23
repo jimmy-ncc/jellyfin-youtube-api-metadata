@@ -1,0 +1,11 @@
+[
+    {
+        "guid": "338cccea-4c27-474e-8934-4c7c3737d034",
+        "name": "YouTube API Metadata",
+        "description": "Provides YouTube metadata (title, description, thumbnails, channel info, stats) via the official YouTube Data API v3, without depending on yt-dlp.",
+        "overview": "YouTube metadata provider using the official YouTube Data API v3",
+        "owner": "jimmyNCC",
+        "category": "Metadata",
+        "versions": []
+    }
+]

@@ -1,0 +1,20 @@
+---
+name: "YouTube API Metadata"
+guid: "338cccea-4c27-474e-8934-4c7c3737d034"
+version: "0.1.2.0"
+targetAbi: "10.11.2"
+framework: "net9.0"
+owner: "jimmyNCC"
+overview: "YouTube metadata provider using the official YouTube Data API v3"
+description: "Provides YouTube metadata (title, description, thumbnails, channel info, stats) via the official YouTube Data API v3, without depending on yt-dlp."
+category: "Metadata"
+artifacts:
+- "Jellyfin.Plugin.YoutubeApiMetadata.dll"
+- "Google.Apis.dll"
+- "Google.Apis.Core.dll"
+- "Google.Apis.Auth.dll"
+- "Google.Apis.YouTube.v3.dll"
+- "Newtonsoft.Json.dll"
+- "System.Management.dll"
+changelog: >
+  Initial scaffold.

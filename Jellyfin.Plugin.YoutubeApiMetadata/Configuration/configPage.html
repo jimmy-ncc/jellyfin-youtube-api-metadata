@@ -1,0 +1,29 @@
+<div id="YoutubeApiMetadataConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-controller="__plugin/youtubeapimetadataconfigjs">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="YoutubeApiMetadataConfigForm">
+                <div class="fieldDescription">
+                    <h1>YouTube API Metadata</h1>
+                    <p>Fetches metadata (title, description, thumbnails, channel info...) from the official YouTube Data API v3, instead of relying on yt-dlp.</p>
+                </div>
+                <div class="inputContainer">
+                    <input is="emby-input" type="text" id="apiKey" label="YouTube Data API v3 Key" />
+                    <div class="fieldDescription">
+                        Create a key in the <a is="emby-linkbutton" class="button-link" target="_blank" href="https://console.cloud.google.com/apis/credentials">Google Cloud Console</a> with the YouTube Data API v3 enabled.
+                    </div>
+                </div>
+                <div class="inputContainer">
+                    <input is="emby-input" type="number" id="cacheExpirationDays" min="1" label="Cache expiration (days)" />
+                    <div class="fieldDescription">
+                        How long a cached API response is reused before being refreshed.
+                    </div>
+                </div>
+                <div>
+                    <button id="save-button" is="emby-button" type="submit" class="raised button-submit block">
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
