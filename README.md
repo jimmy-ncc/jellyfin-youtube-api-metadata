@@ -1,6 +1,6 @@
 # Jellyfin Plugin: YouTube API Metadata
 
-![Build and Test Plugin](https://github.com/jimmyNCC/jellyfin-youtube-api-metadata/actions/workflows/build.yml/badge.svg)
+![Build and Test Plugin](https://github.com/jimmy-ncc/jellyfin-youtube-api-metadata/actions/workflows/build.yml/badge.svg)
 
 Provides metadata (title, description, thumbnails, channel info, tags, duration...) for local YouTube video libraries, fetched from the **official YouTube Data API v3** — no [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) dependency, no cookies, no age-gate/anti-bot fragility for the metadata step.
 
@@ -32,14 +32,14 @@ Only the 11-character video ID between square brackets in the file name is requi
 Dashboard → Plugins → Repositories → Add:
 
 ```
-https://raw.githubusercontent.com/jimmyNCC/jellyfin-youtube-api-metadata/master/manifest.json
+https://raw.githubusercontent.com/jimmy-ncc/jellyfin-youtube-api-metadata/master/manifest.json
 ```
 
 Then install "YouTube API Metadata" from Dashboard → Plugins → Catalog.
 
 ### Manual
 
-Download the latest release zip from the [Releases page](https://github.com/jimmyNCC/jellyfin-youtube-api-metadata/releases), extract it into `<jellyfin data dir>/plugins/YoutubeApiMetadata_<version>/`, and restart Jellyfin.
+Download the latest release zip from the [Releases page](https://github.com/jimmy-ncc/jellyfin-youtube-api-metadata/releases), extract it into `<jellyfin data dir>/plugins/YoutubeApiMetadata_<version>/`, and restart Jellyfin.
 
 ## Development
 

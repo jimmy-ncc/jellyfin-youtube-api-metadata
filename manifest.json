@@ -4,7 +4,7 @@
         "name": "YouTube API Metadata",
         "description": "Provides YouTube metadata (title, description, thumbnails, channel info, stats) via the official YouTube Data API v3, without depending on yt-dlp.",
         "overview": "YouTube metadata provider using the official YouTube Data API v3",
-        "owner": "jimmyNCC",
+        "owner": "314",
         "category": "Metadata",
         "versions": []
     }
