@@ -6,6 +6,15 @@
         "overview": "YouTube metadata provider using the official YouTube Data API v3",
         "owner": "314",
         "category": "Metadata",
-        "versions": []
+        "versions": [
+            {
+                "version": "0.1.2.0",
+                "changelog": "Initial scaffold.\n",
+                "targetAbi": "10.11.2",
+                "sourceUrl": "https://github.com/jimmy-ncc/jellyfin-youtube-api-metadata/releases/download/v0.1.2.0/youtube-api-metadata_0.1.2.0.zip",
+                "checksum": "4affdb7bd03fa6aa3372526b1c3dc86d",
+                "timestamp": "2026-08-23T12:46:26Z"
+            }
+        ]
     }
 ]
