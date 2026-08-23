@@ -5,7 +5,7 @@
 > [!CAUTION]
 > This plugin does **not** download YouTube videos. It only fetches metadata (title, description, thumbnails...) for videos you already have on disk. Use [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) (or similar) to download the videos themselves.
 
-Provides metadata (title, description, thumbnails, channel info, tags, duration...) for local YouTube video libraries, fetched from the **official YouTube Data API v3**, no [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) dependency, no cookies, no age-gate/anti-bot fragility for the metadata step.
+Provides metadata (title, description, thumbnails, channel info, tags, duration...) for local YouTube video libraries, fetched from the **official YouTube Data API v3**, no [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) dependency, no cookies.
 
 Inspired by [ankenyr/jellyfin-youtube-metadata-plugin](https://github.com/ankenyr/jellyfin-youtube-metadata-plugin).
 
