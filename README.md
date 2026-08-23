@@ -4,7 +4,7 @@
 
 Provides metadata (title, description, thumbnails, channel info, tags, duration...) for local YouTube video libraries, fetched from the **official YouTube Data API v3** — no [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) dependency, no cookies, no age-gate/anti-bot fragility for the metadata step.
 
-Inspired by [ankenyr/jellyfin-youtube-metadata-plugin](https://github.com/ankenyr/jellyfin-youtube-metadata-plugin), which this plugin can run side by side with (different plugin GUID, different cache directory).
+Inspired by [ankenyr/jellyfin-youtube-metadata-plugin](https://github.com/ankenyr/jellyfin-youtube-metadata-plugin).
 
 ## Compatibility
 
