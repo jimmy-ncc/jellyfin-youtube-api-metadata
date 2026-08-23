@@ -17,6 +17,14 @@ Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatibl
 
 ## File naming convention
 
+This plugin only fetches **metadata** — it does not download videos. Download the videos themselves with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), using an output template that matches the layout below:
+
+```
+yt-dlp -o "<library>/%(uploader)s/%(uploader)s - %(upload_date)s - %(title)s [%(id)s].%(ext)s" <url>
+```
+
+Which produces:
+
 ```
 <library>/<Channel Name>/<Channel Name> - <upload_date> - <title> [<videoId>].<ext>
 ```
