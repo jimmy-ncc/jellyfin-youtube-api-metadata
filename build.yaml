@@ -6,7 +6,7 @@ targetAbi: "10.11.2"
 framework: "net9.0"
 owner: "314"
 overview: "YouTube metadata provider using the official YouTube Data API v3"
-description: "Provides YouTube metadata (title, description, thumbnails, channel info, stats) via the official YouTube Data API v3, without depending on yt-dlp."
+description: "Provides YouTube metadata (title, description, thumbnails, channel info, stats) via the official YouTube Data API v3, without depending on yt-dlp. Requires Jellyfin 10.11.x; not compatible with Jellyfin 12.x."
 category: "Metadata"
 artifacts:
 - "Jellyfin.Plugin.YoutubeApiMetadata.dll"

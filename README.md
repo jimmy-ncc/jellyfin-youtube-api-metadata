@@ -6,6 +6,10 @@ Provides metadata (title, description, thumbnails, channel info, tags, duration.
 
 Inspired by [ankenyr/jellyfin-youtube-metadata-plugin](https://github.com/ankenyr/jellyfin-youtube-metadata-plugin), which this plugin can run side by side with (different plugin GUID, different cache directory).
 
+## Compatibility
+
+Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatible with Jellyfin 12.x** — that's a new major server version with breaking API changes; this plugin targets the 10.x `Jellyfin.Controller`/`Jellyfin.Data` assemblies and will not load correctly on 12.x.
+
 ## How it maps to Jellyfin
 
 - A YouTube **channel** = a Jellyfin **Series**
@@ -32,7 +36,7 @@ Only the 11-character video ID between square brackets in the file name is requi
 Dashboard → Plugins → Repositories → Add:
 
 ```
-https://raw.githubusercontent.com/jimmy-ncc/jellyfin-youtube-api-metadata/master/manifest.json
+https://raw.githubusercontent.com/jimmy-ncc/jellyfin-youtube-api-metadata/main/manifest.json
 ```
 
 Then install "YouTube API Metadata" from Dashboard → Plugins → Catalog.
