@@ -8,7 +8,7 @@ Inspired by [ankenyr/jellyfin-youtube-metadata-plugin](https://github.com/ankeny
 
 ## Compatibility
 
-Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatible with Jellyfin 12.x** — that's a new major server version with breaking API changes; this plugin targets the 10.x `Jellyfin.Controller`/`Jellyfin.Data` assemblies and will not load correctly on 12.x.
+Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatible with Jellyfin 12.x** that's a new major server version with breaking API changes; this plugin targets the 10.x `Jellyfin.Controller`/`Jellyfin.Data` assemblies and will not load correctly on 12.x.
 
 ## How it maps to Jellyfin
 
@@ -17,7 +17,7 @@ Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatibl
 
 ## File naming convention
 
-This plugin only fetches **metadata** — it does not download videos. Download the videos themselves with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), using an output template that matches the layout below:
+This plugin only fetches **metadata** it does not download videos. Download the videos themselves with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), using an output template that matches the layout below:
 
 ```
 yt-dlp -o "<library>/%(uploader)s/%(uploader)s - %(upload_date)s - %(title)s [%(id)s].%(ext)s" <url>
@@ -29,7 +29,7 @@ Which produces:
 <library>/<Channel Name>/<Channel Name> - <upload_date> - <title> [<videoId>].<ext>
 ```
 
-Only the 11-character video ID between square brackets in the file name is required — the rest is cosmetic. Channel folders can optionally be named `<Channel Name> [<channelId>]` (24-char channel ID) to skip a name-based lookup on first import; without it, the plugin resolves the channel by searching YouTube for the folder name once, then remembers the ID.
+Only the 11-character video ID between square brackets in the file name is required the rest is cosmetic. Channel folders can optionally be named `<Channel Name> [<channelId>]` (24-char channel ID) to skip a name-based lookup on first import; without it, the plugin resolves the channel by searching YouTube for the folder name once, then remembers the ID.
 
 ## Setup
 
