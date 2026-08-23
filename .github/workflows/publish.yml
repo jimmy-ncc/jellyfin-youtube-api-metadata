@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+        with:
+          # A "release" event fires on the tag ref, not the default branch - without this the
+          # checkout lands in a detached HEAD state and the final `git push` fails.
+          ref: main
 
       - name: Download Build Artifact
         uses: actions/download-artifact@v6
@@ -47,6 +51,14 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./*.md5
+
+      - name: Upload SHA256 Checksum Assets
+        uses: shogo82148/actions-upload-release-asset@v1.9.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./*.sha256
 
       - name: Setup Python
         uses: actions/setup-python@v5
