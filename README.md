@@ -1,4 +1,4 @@
-# Jellyfin Plugin: YouTube API Metadata
+# YouTube API Metadata (Jellyfin plugin)
 
 ![Build and Test Plugin](https://github.com/jimmy-ncc/jellyfin-youtube-api-metadata/actions/workflows/build.yml/badge.svg)
 
