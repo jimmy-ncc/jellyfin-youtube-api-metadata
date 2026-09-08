@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/dotnet:9.0
+FROM mcr.microsoft.com/devcontainers/dotnet:10.0
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 && apt-get -y install --no-install-recommends python3-pip \
@@ -17,8 +17,8 @@ RUN apt update
 RUN apt install jellyfin -y
 RUN apt install ffmpeg -y
 
-RUN git clone --depth 1 --branch v10.11.2 https://github.com/jellyfin/jellyfin
-RUN git clone --depth 1 --branch v10.11.2 https://github.com/jellyfin/jellyfin-web
+RUN git clone --depth 1 --branch v12.0.0 https://github.com/jellyfin/jellyfin
+RUN git clone --depth 1 --branch v12.0.0 https://github.com/jellyfin/jellyfin-web
 RUN mkdir -p /workspaces/jellyfin-data/
 RUN chown vscode /workspaces/jellyfin-data
 WORKDIR /workspaces/jellyfin-web

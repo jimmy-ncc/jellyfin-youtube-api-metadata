@@ -69,6 +69,11 @@ namespace Jellyfin.Plugin.YoutubeApiMetadata
 
         /// <summary>
         /// Maps a YouTube Data API video to a Jellyfin Episode (a video = one episode of its channel's "show").
+        /// Season/episode numbers are deliberately not set here: on Jellyfin 12, episodes that share the
+        /// same (Series, Season, Episode) get silently collapsed into "alternate versions" of one item, so
+        /// every video needs a distinct <see cref="Episode.IndexNumber"/> — which needs the sibling
+        /// episodes already in the library, unavailable to this pure mapping. See
+        /// <see cref="ComputeEpisodeIndex"/> and its caller in <c>YoutubeEpisodeProvider</c>.
         /// </summary>
         public static MetadataResult<Episode> VideoToEpisode(YTVideo video)
         {
@@ -76,9 +81,7 @@ namespace Jellyfin.Plugin.YoutubeApiMetadata
             var item = new Episode
             {
                 Name = snippet.Title,
-                Overview = snippet.Description,
-                IndexNumber = 1,
-                ParentIndexNumber = 1
+                Overview = snippet.Description
             };
             item.ProviderIds.Add(Constants.PluginName, video.Id);
 
@@ -151,6 +154,26 @@ namespace Jellyfin.Plugin.YoutubeApiMetadata
             }
 
             return new MetadataResult<Series> { HasMetadata = true, Item = item };
+        }
+
+        /// <summary>
+        /// Computes a video's episode number as its chronological rank (1-based) among its
+        /// already-known channel siblings, so every video in a channel gets a distinct number and
+        /// none of them get collapsed together as "alternate versions" of the same episode on
+        /// Jellyfin 12. Pure and side-effect-free: the caller fetches <paramref name="siblingEpisodes"/>
+        /// from the library.
+        /// </summary>
+        public static int ComputeEpisodeIndex(
+            string currentVideoId,
+            DateTime premiereDate,
+            IEnumerable<(string VideoId, DateTime PremiereDate)> siblingEpisodes)
+        {
+            var rank = siblingEpisodes.Count(s =>
+                s.VideoId != currentVideoId
+                && (s.PremiereDate < premiereDate
+                    || (s.PremiereDate == premiereDate && string.CompareOrdinal(s.VideoId, currentVideoId) < 0)));
+
+            return rank + 1;
         }
     }
 }

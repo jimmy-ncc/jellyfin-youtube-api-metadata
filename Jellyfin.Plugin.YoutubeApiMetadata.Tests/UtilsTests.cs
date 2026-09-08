@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Google.Apis.YouTube.v3.Data;
 using Xunit;
 
@@ -66,8 +67,8 @@ namespace Jellyfin.Plugin.YoutubeApiMetadata.Tests
             Assert.Equal(2009, result.Item.ProductionYear);
             Assert.Equal(new DateTime(2009, 10, 25, 6, 57, 33, DateTimeKind.Utc), result.Item.PremiereDate);
             Assert.Equal("20091025-Never Gonna Give You Up", result.Item.ForcedSortName);
-            Assert.Equal(1, result.Item.IndexNumber);
-            Assert.Equal(1, result.Item.ParentIndexNumber);
+            Assert.Null(result.Item.IndexNumber);
+            Assert.Null(result.Item.ParentIndexNumber);
             Assert.Equal("dQw4w9WgXcQ", result.Item.ProviderIds[Constants.PluginName]);
             Assert.Equal(TimeSpan.FromSeconds(213).Ticks, result.Item.RunTimeTicks);
             Assert.Contains("80s", result.Item.Tags);
@@ -132,6 +133,79 @@ namespace Jellyfin.Plugin.YoutubeApiMetadata.Tests
         public void GetBestThumbnailUrl_ReturnsNullWhenNoThumbnails()
         {
             Assert.Null(Utils.GetBestThumbnailUrl(null));
+        }
+    }
+
+    public class ComputeEpisodeIndexTests
+    {
+        [Fact]
+        public void ReturnsOne_WhenNoSiblings()
+        {
+            var index = Utils.ComputeEpisodeIndex(
+                "current1111",
+                new DateTime(2024, 6, 15),
+                Array.Empty<(string, DateTime)>());
+
+            Assert.Equal(1, index);
+        }
+
+        [Fact]
+        public void RanksByPremiereDate_AcrossAllSiblings_RegardlessOfYear()
+        {
+            var siblings = new[]
+            {
+                ("olderVid111", new DateTime(2020, 1, 1)),
+                ("newerVid111", new DateTime(2025, 12, 1))
+            };
+
+            var index = Utils.ComputeEpisodeIndex("current1111", new DateTime(2024, 6, 15), siblings);
+
+            Assert.Equal(2, index);
+        }
+
+        [Fact]
+        public void ExcludesItselfFromSiblingList()
+        {
+            var siblings = new[]
+            {
+                ("current1111", new DateTime(2024, 1, 1)),
+                ("otherVid1111", new DateTime(2024, 3, 1))
+            };
+
+            var index = Utils.ComputeEpisodeIndex("current1111", new DateTime(2024, 6, 15), siblings);
+
+            Assert.Equal(2, index);
+        }
+
+        [Fact]
+        public void BreaksTiesOnSameDate_ByVideoIdOrdinal()
+        {
+            var indexAfter = Utils.ComputeEpisodeIndex(
+                "zzzzzzzzzzz",
+                new DateTime(2024, 6, 15),
+                new[] { ("aaaaaaaaaaa", new DateTime(2024, 6, 15)) });
+
+            var indexBefore = Utils.ComputeEpisodeIndex(
+                "aaaaaaaaaaa",
+                new DateTime(2024, 6, 15),
+                new[] { ("zzzzzzzzzzz", new DateTime(2024, 6, 15)) });
+
+            Assert.Equal(2, indexAfter);
+            Assert.Equal(1, indexBefore);
+        }
+
+        [Fact]
+        public void NeverRepeatsAcrossManySiblings()
+        {
+            var siblings = Enumerable.Range(0, 20)
+                .Select(i => ($"vid{i:D8}", new DateTime(2020, 1, 1).AddDays(i)))
+                .ToArray();
+
+            var indexes = siblings
+                .Select(s => Utils.ComputeEpisodeIndex(s.Item1, s.Item2, siblings))
+                .ToList();
+
+            Assert.Equal(indexes.Count, indexes.Distinct().Count());
         }
     }
 }

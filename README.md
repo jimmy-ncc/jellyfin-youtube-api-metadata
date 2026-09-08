@@ -7,11 +7,9 @@
 
 Provides metadata (title, description, thumbnails, channel info, tags, duration...) for local YouTube video libraries, fetched from the **official YouTube Data API v3**, no [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) dependency, no cookies.
 
-Inspired by [ankenyr/jellyfin-youtube-metadata-plugin](https://github.com/ankenyr/jellyfin-youtube-metadata-plugin).
-
 ## Compatibility
 
-Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatible with Jellyfin 12.x** that's a new major server version with breaking API changes; this plugin targets the 10.x `Jellyfin.Controller`/`Jellyfin.Data` assemblies and will not load correctly on 12.x.
+Built and tested against **Jellyfin 12.x** (`Jellyfin.Controller`/`Jellyfin.Data` 12.0.0, .NET 10). **Not compatible with Jellyfin 10.11.x or earlier** — those need an older release of this plugin (see the [Releases page](https://github.com/jimmy-ncc/jellyfin-youtube-api-metadata/releases) for the last 10.11.x-compatible build).
 
 ## How it maps to Jellyfin
 
@@ -23,16 +21,19 @@ Built and tested against **Jellyfin 10.11.x** (server 10.11.11). **Not compatibl
 This plugin only fetches **metadata** it does not download videos. Download the videos themselves with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), using an output template that matches the layout below:
 
 ```
-yt-dlp -o "<library>/%(uploader)s/%(uploader)s - %(upload_date)s - %(title)s [%(id)s].%(ext)s" <url>
+yt-dlp -o "<library>/%(uploader)s/%(upload_date)s - %(title)s [%(id)s].%(ext)s" <url>
 ```
 
 Which produces:
 
 ```
-<library>/<Channel Name>/<Channel Name> - <upload_date> - <title> [<videoId>].<ext>
+<library>/<Channel Name>/<upload_date> - <title> [<videoId>].<ext>
 ```
 
-Only the 11-character video ID between square brackets in the file name is required the rest is cosmetic. Channel folders can optionally be named `<Channel Name> [<channelId>]` (24-char channel ID) to skip a name-based lookup on first import; without it, the plugin resolves the channel by searching YouTube for the folder name once, then remembers the ID.
+> [!IMPORTANT]
+> Don't repeat the channel name as a filename prefix (e.g. `<Channel Name> - <upload_date> - ...`) — on Jellyfin 12.x that pattern makes every video in the channel collapse into one episode with a version picker instead of appearing separately.
+
+Channel folders can optionally be named `<Channel Name> [<channelId>]` (24-char channel ID) to skip a name-based lookup on first import without it, the plugin resolves the channel by searching YouTube for the folder name once, then remembers the ID.
 
 ## Setup
 
