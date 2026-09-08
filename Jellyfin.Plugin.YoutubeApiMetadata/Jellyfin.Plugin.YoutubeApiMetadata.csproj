@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<RootNamespace>Jellyfin.Plugin.YoutubeApiMetadata</RootNamespace>
-		<AssemblyVersion>0.1.2.0</AssemblyVersion>
-		<FileVersion>0.1.2.0</FileVersion>
-		<Version>0.1.2.0</Version>
+		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<FileVersion>0.2.0.0</FileVersion>
+		<Version>0.2.0.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="Configuration\configPage.html" />
@@ -17,9 +17,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jellyfin.Controller" Version="10.11.2" />
-		<PackageReference Include="Jellyfin.Data" Version="10.11.2" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
+		<PackageReference Include="Jellyfin.Controller" Version="12.0.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Jellyfin.Data" Version="12.0.0" ExcludeAssets="runtime" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="10.0.11" />
 		<PackageReference Include="Google.Apis.YouTube.v3" Version="1.75.0.4246" />
 	</ItemGroup>
 </Project>
