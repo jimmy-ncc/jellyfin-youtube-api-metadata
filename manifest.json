@@ -8,6 +8,14 @@
         "category": "Metadata",
         "versions": [
             {
+                "version": "0.2.0.0",
+                "changelog": "Ported to Jellyfin 12.0 (net10.0, Jellyfin.Controller/Jellyfin.Data 12.0.0). Drops Jellyfin 10.11.x support.\n",
+                "targetAbi": "12.0.0",
+                "sourceUrl": "https://github.com/jimmy-ncc/jellyfin-youtube-api-metadata/releases/download/v0.2.0.0/youtube-api-metadata_0.2.0.0.zip",
+                "checksum": "d02dd3a9703d186eb71f2efd4c9b88c4",
+                "timestamp": "2026-09-08T22:05:52Z"
+            },
+            {
                 "version": "0.1.2.0",
                 "changelog": "Initial scaffold.\n",
                 "targetAbi": "10.11.2",
